@@ -176,7 +176,7 @@ func copyTree(src, dest string) error {
 				return err
 			}
 		default:
-			return fmt.Errorf("Unsupported node %q in assets, only regular files, directories and symlinks are supported.", path, mode.String())
+			return fmt.Errorf("Unsupported node %q in assets, only regular files, directories and symlinks are supported.", mode.String())
 		}
 		return nil
 	})
@@ -263,7 +263,7 @@ func getSymlinkedAssets(path string) ([]string, error) {
 	levels := maxLevels
 	for {
 		if levels < 1 {
-			return nil, fmt.Errorf("Too many levels of symlinks (>$d)", maxLevels)
+			return nil, fmt.Errorf("Too many levels of symlinks (> %d)", maxLevels)
 		}
 		fi, err := os.Lstat(path)
 		if err != nil {
